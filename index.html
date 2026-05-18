@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AI Crime Reporting System</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+margin:0;
+padding:0;
+}
+
+.box{
+width:400px;
+margin:auto;
+margin-top:50px;
+background:#222;
+padding:20px;
+border-radius:10px;
+}
+
+input, textarea, select{
+width:90%;
+padding:10px;
+margin:10px;
+border:none;
+border-radius:5px;
+}
+
+button{
+padding:10px 20px;
+background:red;
+color:white;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+button:hover{
+background:darkred;
+}
+
+#preview{
+margin-top:10px;
+border:2px solid white;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TITLE -->
+<h2>AI Crime Reporting System</h2>
+
+<div class="box">
+
+<!-- FORM -->
+<form>
+
+<input type="text" placeholder="Your Name" required>
+
+<textarea placeholder="Describe Crime"></textarea>
+
+<select>
+<option>Select Crime Type</option>
+<option>Theft</option>
+<option>Cyber Crime</option>
+<option>Violence</option>
+<option>Fraud</option>
+</select>
+
+<br>
+
+<!-- IMAGE UPLOAD -->
+<label>Upload Crime Image:</label>
+<input type="file" accept="image/*" onchange="previewImage(event)">
+
+<br>
+
+<img id="preview" width="150" style="display:none;">
+
+<br><br>
+
+<button type="button" onclick="submitReport()">Submit Report</button>
+
+</form>
+
+<p id="msg"></p>
+
+</div>
+
+<!-- CHATBOT (optional simple AI feel) -->
+<div style="position:fixed;bottom:10px;right:10px;background:#222;padding:10px;width:200px;border-radius:10px;">
+<h4>AI Help 🤖</h4>
+<input id="userInput" placeholder="Ask help..." style="width:100%;">
+<button onclick="reply()" style="width:100%;margin-top:5px;">Send</button>
+<p id="botReply"></p>
+</div>
+
+<script>
+
+// IMAGE PREVIEW
+function previewImage(event){
+let reader = new FileReader();
+
+reader.onload = function(){
+let img = document.getElementById("preview");
+img.src = reader.result;
+img.style.display = "block";
+}
+
+reader.readAsDataURL(event.target.files[0]);
+}
+
+// SUBMIT REPORT (FAKE AI RESPONSE)
+function submitReport(){
+document.getElementById("msg").innerText =
+"Report submitted successfully 🚨 AI is analyzing your case...";
+}
+
+// SIMPLE AI CHATBOT
+function reply(){
+
+let msg = document.getElementById("userInput").value.toLowerCase();
+let replyText = "";
+
+if(msg.includes("help")){
+replyText = "Select role and submit crime report.";
+}
+else if(msg.includes("police")){
+replyText = "Police can view all reports in dashboard.";
+}
+else if(msg.includes("how")){
+replyText = "Fill form and click submit.";
+}
+else{
+replyText = "Ask about help, police, or report.";
+}
+
+document.getElementById("botReply").innerText = replyText;
+}
+
+</script>
+
+</body>
+</html>
